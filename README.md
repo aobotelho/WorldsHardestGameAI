@@ -1,2 +1,6 @@
 # WorldsHardestGameAI
-This is the WHG AI I used in one of my videos, I coded it again in javascript so that you can play it online
+Python version:
+Forked From: https://github.com/Code-Bullet/WorldsHardestGameAI
+GUI Based on: https://www.youtube.com/watch?v=-0q_miviUDs
+
+Developed by Andre Botelho (aobotelho2@gmail.com)
