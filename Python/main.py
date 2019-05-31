@@ -65,7 +65,7 @@ go = True
 counter = 0
 maxSteps = 5
 gen = 1
-'''while go:
+while go:
     for maxSteps in range(5,200,5):
         for _ in range(5):
             for _ in range(maxSteps):
@@ -111,48 +111,3 @@ gen = 1
             turtle.write('Generation: {}'.format(gen),align='center')
             turtle.goto(-300,310)
             turtle.write('Max Steps: {}'.format(maxSteps),align='center')
-'''     
-        
-
-while go:
-    try:                
-        _ = [player.MoveNeuralNetwork(wallCoordinates,initialCoordinates,checkpointCoordinates,finalCoordinates,enemyCoordinates) for player in playerList[::-1] if player.isDead == False]
-        if counter%2 == 0:
-            _ = [enemyVars[i].MoveEnemy(wallCoordinates,finalCoordinates) for i in range(len(enemyVars))]
-            enemyCoordinates = [enemyVars[i].CurrentCoordinates() for i in range(len(enemyVars))]
-            counter = 0
-        else:
-            counter = counter + 1
-        
-        wn.update()
-        _ = [playerList[i].CollisionWithEnemy(enemyCoordinates) for i in range(len(playerList))]
-
-        somePlayerReachedEnd = sum([1 if playerList[i].endGameFlag == True else 0 for i in range(len(playerList))])
-
-        someoneStillAlive = False
-        for i in range(len(playerList)):
-            if playerList[i].isDead == False:
-                someoneStillAlive = True
-                break
-        if someoneStillAlive == False:
-
-            ########################################################################
-            # Crossover and mutations now!
-            ########################################################################
-            wn.update()
-            playerList = GeneticAlgorithm(playerList)
-            _ = [playerList[i].goto(random.choice(initialCoordinates)) for i in range(len(playerList))]
-            _ = [playerList[i].ResetDefaults() for i in range(len(playerList))]
-            gen = gen+1
-
-            turtle.penup()
-            turtle.clear()
-            turtle.hideturtle()
-            turtle.goto(-300,320)
-            turtle.color('red')
-            turtle.write('Generation: {}'.format(gen),align='center')
-            turtle.goto(-300,310)
-            turtle.write('Max Steps: {}'.format(maxSteps),align='center')
-
-    except Exception as e:
-        go = False
